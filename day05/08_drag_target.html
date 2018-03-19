@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World</title>
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+<h1>拖动API--目标对象触发四个事件</h1>
+<img src="img/t.png" id="t2">
+<hr>
+<img src="img/p3.png" id="p3" />
+<script type="text/javascript">
+ var t2 = document.getElementById("t2");
+ //拖动进入 16:32--16:34
+ t2.ondragenter = function(){
+     console.log("拖动进入");
+ }
+ //拖动悬停
+ t2.ondragover = function(e){
+     e.preventDefault();
+     console.log("拖动悬停");
+ }
+ //拖动离开
+ t2.ondragleave = function(){
+     console.log("拖动离开");
+ }
+ //拖动释放
+ t2.ondrop = function(){
+     console.log("拖动释放");
+ }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>svg</title>
+    <style>
+        body{text-align: center}
+        svg{background: #ddd}
+    </style>
+</head>
+<body>
+    <svg id="s3" width="800" height="600">
+    </svg>
+    <script type="text/javascript">
+      //创建随机数指定范围
+      function rn(min,max){
+        var num = Math.random()*(max-min)+min;
+        return Math.floor(num);
+      }
+      //创建随机颜色指定范围
+      function rc(min,max){
+         var r = rn(min,max);
+         var g = rn(min,max);
+         var b = rn(min,max);
+         return `rgb(${r},${g},${b})`;
+      }
+      //console.log(rn(100,150));
+      //console.log(rc(100,255));
+      //0:获取画布
+      var s3 = document.getElementById("s3");
+      //1:创建循环30次
+      for(var i=0;i<30;i++){
+        //2:创建圆
+        var c = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "circle");
+        //3:指定半径 随机大小
+        c.setAttribute("r",rn(10,80));
+        //4:圆心    随机位置
+        c.setAttribute("cx",rn(0,800));
+        c.setAttribute("cy",rn(0,600));
+        //5:填充色  随机颜色
+        c.setAttribute("fill",rc(0,180));
+        //6:填充透明度  随机透明度
+        c.setAttribute("fill-opacity",Math.random());
+        //7:将新创建元素添加s3
+        s3.appendChild(c);
+
+        //8:为当前圆绑定点击事件
+        c.onclick = function(){
+            var that = this; //预留this
+            //9:创建定时器
+            //为了防止圆再次被点击，消息事件监听函数
+            that.onclick = null;
+
+
+
+            var t = setInterval(function(){
+                //10:获取原有半径,增加
+                var r = parseInt(that.getAttribute("r"));
+                var p = parseFloat(that.getAttribute("fill-opacity"));
+                //11:获取透明度   减少
+                console.log(r+":"+p)
+                //12:将半径和透明度保存圆
+                r *= 1.05; //半径变大
+                p *= 0.9;  //透明度变淡
+                that.setAttribute("r",r);
+                that.setAttribute("fill-opacity",p);
+                //13:判断透明度太低，删除
+                if(p<0.0001){
+                    clearInterval(t);     //停止定时器
+                    s3.removeChild(that); //删除指定元素
+                }
+
+            },1000/60);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      }
+    </script>
+</body>
+</html>

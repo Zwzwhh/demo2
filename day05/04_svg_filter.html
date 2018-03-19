@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{text-align: center}
+        svg{background: #ddd}
+    </style>
+</head>
+<body>
+      <h1>SVG-滤镜--高斯模糊滤镜</h1>
+      <svg id="s3" width="500" height="400">
+        <!--定义对象-->
+        <defs>
+        <filter id="f2">
+            <feGaussianBlur stdDeviation="2"></feGaussianBlur>
+        </filter>
+        <filter id="f3">
+             <feGaussianBlur stdDeviation="5"></feGaussianBlur>
+        </filter>
+        </defs>
+        <!--使用  -->
+        <text y="100" font-size="70">达内科技</text>
+        <text y="200" font-size="70" filter="url(#f2)">达内科技</text>
+        <text y="300" font-size="70" filter="url(#f3)">达内科技</text>
+
+       </svg>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Hello, World</title>
+    <style type="text/css">
+      body{text-align: center}
+    </style>
+</head>
+<body>
+<h1>拖动API</h1>
+<img src="img/t.png" id="t2">
+<hr>
+ <div id="container">
+     <img src="img/p3.png" id="p3" />
+     <img src="img/p4.png" id="p4" />
+     <img src="img/p5.png" id="p5" />
+ </div>
+ <script type="text/javascript">
+    //1:创建变量保存当前被拖动飞机编号 id
+    var planeId = null;
+    //2:获取拖动源对象 3 个
+    var list = document
+        .querySelectorAll("#container img");
+    //3:为拖动源对象绑定三个事件
+    //  拖动开始   当前飞机编号 变量
+    //  拖动中
+    //  拖动结束
+    for(var i=0;i<list.length;i++){
+        var plane = list[i];
+        plane.ondragstart = function(){
+            planeId = this.id;
+            console.log(planeId);
+        }
+        plane.ondrag = function(){}
+        plane.ondragend = function(){}
+    }
+    //4:目标对象绑定四个事件
+    var t2 = document.getElementById("t2");
+    t2.ondragenter = function(){}
+    t2.ondragover = function(e){e.preventDefault();}
+    t2.ondragleave = function(){}
+    t2.ondrop = function(){  17:33-17:35
+       //父元素
+       var container =
+           document.getElementById("container");
+       //当前需要删除飞机元素
+       var c = document.getElementById(planeId);
+       //删除
+       container.removeChild(c);
+    }
+
+    //5:处理悬停事件，阻止默认行为
+    //6:释放
+    //  获取拖动飞机编号
+    //  依据编号获取编号对应飞机
+    //  删除
+ </script>
+</body>
+</html>
